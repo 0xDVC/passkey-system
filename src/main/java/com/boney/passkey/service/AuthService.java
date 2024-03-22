@@ -23,7 +23,6 @@ public class AuthService {
     public boolean verifyPasskey(String userId, String passkey) {
         User user = userRepository.getUserById(userId);
         if (user != null) {
-            // Implement passkey verification logic
             return zkProofManager.performZeroKnowledgeProof(userId, passkey, user.getPasskey());
         }
         return false;
