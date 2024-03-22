@@ -11,13 +11,13 @@ public class PasskeyController {
 
     @PostMapping("/register")
     public String registerUser(@RequestParam String userId, @RequestParam String passkey) {
-        // Implement user registration logic
+        // lazy implementation
         return "User registered successfully";
     }
 
     @PostMapping("/verify")
     public String verifyPasskey(@RequestParam String userId, @RequestParam String passkey) {
-        // Implement passkey verification logic
+        // lazy implementation
         return "Passkey verified successfully";
     }
 }
