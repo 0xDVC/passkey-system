@@ -26,8 +26,6 @@ public class ZeroKnowledgeProofManager {
             BigInteger x = generateRandomScalar();
             ECPoint commitment = generateCommitment(publicKeyObj, x);
 
-            // Send the commitment to the server for verification
-
             // Simulate server-side verification
             SignatureVerifier verifier = new SignatureVerifier(publicKeyObj, commitment);
             return verifier.verify(password, x);
@@ -53,8 +51,7 @@ public class ZeroKnowledgeProofManager {
             throw new IllegalArgumentException("Public key is not an EC public key");
         }
 
-        // Use Bouncy Castle for scalar multiplication
-
+        // Using Bouncy Castle for scalar multiplication
         ECPoint G = ECPointUtil.convertPoint(ecPublicKey.getParams().getCurve(), ecPublicKey.getW(), false);
         return (ECPoint) ECAlgorithms.referenceMultiply(G, x).normalize();
     }
@@ -67,7 +64,6 @@ public class ZeroKnowledgeProofManager {
                     signature.initVerify(publicKey);
                     signature.update(message.getBytes());
 
-                    // Use the verify method directly
                     return signature.verify(x.toByteArray());
                 } catch (NoSuchProviderException e) {
                     e.printStackTrace();
